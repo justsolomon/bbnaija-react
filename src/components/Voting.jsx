@@ -42,6 +42,7 @@ export default function Voting() {
         onVote={() => voteHM(hm)}
         downVote={() => downVote(hm)}
         castVote={(vote) => castVote(vote, hm)}
+        checkManualVoteError={(voteAmount) => checkIfVotingIsPossible(voteAmount, hm)}
       />
     </div>
   ));
@@ -131,13 +132,13 @@ export default function Voting() {
 
     let totalVotesNow = 0;
     housemates.forEach((hmates) => {
-      totalVotesNow = maximumVotes + hmates.votes;
+      totalVotesNow += Number(hmates.votes);
     });
 
-    if (maximumVotes > totalVotesNow) {
-      return false;
+    if (maximumVotes >= totalVotesNow) {
+      return true;
     }
-    return true;
+    return false;
   };
 
   const viewLeaderboard = () => {
