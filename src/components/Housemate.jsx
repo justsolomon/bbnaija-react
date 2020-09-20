@@ -5,12 +5,13 @@ export default function Housemate({
   onVote,
   downVote,
   castVote,
-  housemates
+  housemates,
+  checkManualVoteError
 }) {
   const [votes, setVotes] = useState(housemate.votes);
 
   useEffect(() => {
-    if (votes.length > 0) {
+    if (votes > 0) {
       const nn = parseInt(votes);
       castVote(nn);
     }
@@ -39,8 +40,13 @@ export default function Housemate({
             <input
               type="text"
               className="housemate__vote__count"
-              onChange={(e) => setVotes(e.target.value)}
-              value={votes}
+              onChange={(e) => {
+                if (checkManualVoteError(e.target.value)) {
+                  setVotes(e.target.value);
+                }
+                }
+              }
+              defaultValue={votes}
             />
             <div className="housemate__vote__divider" />
             <button
