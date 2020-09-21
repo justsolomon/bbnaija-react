@@ -1,7 +1,7 @@
 import React from "react";
 import "./assets/scss/app.scss";
-import Leaderboard from "./components/Leaderboard";
-import Voting from "./components/Voting";
+import Leaderboard from "./pages/Leaderboard";
+import Voting from "./pages/Voting";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 export default function App() {
