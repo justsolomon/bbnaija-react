@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Housemate from "../components/Housemate";
+import React, { useState } from 'react';
+import Housemate from '../components/Housemate';
 import staticHousemates from '../components/HousematesList';
 import { useHistory } from 'react-router-dom';
 
@@ -12,14 +12,16 @@ export default function Voting() {
   const history = useHistory();
 
   const HouseMates = housemates.map((hm) => (
-    <div key={hm.name} className="col-md-6">
+    <div key={hm.name} className='col-md-6'>
       <Housemate
         housemate={hm}
         housemates={housemates}
         onVote={() => voteHM(hm)}
         downVote={() => downVote(hm)}
         castVote={(vote) => castVote(vote, hm)}
-        checkManualVoteError={(voteAmount) => checkIfVotingIsPossible(voteAmount, hm)}
+        checkManualVoteError={(voteAmount) =>
+          checkIfVotingIsPossible(voteAmount, hm)
+        }
       />
     </div>
   ));
@@ -124,23 +126,25 @@ export default function Voting() {
   };
 
   return (
-    <div className="voting">
-      <section className="voting__box">
-        <h1 className="voting__box__title">My Available Votes</h1>
-        <h2 className="voting__box__numbers">{vote}</h2>
-        <div className="voting__box__progressBar">
+    <div className='voting'>
+      <section className='voting__box'>
+        <h1 className='voting__box__title'>My Available Votes</h1>
+        <h2 className='voting__box__numbers'>{vote}</h2>
+        <div className='voting__box__progressBar'>
           <div
             className={`progress length-${percentageOfVoteRemaining()}`}
           ></div>
         </div>
       </section>
 
-      <section className="home__votes">
-        <div className="row">{HouseMates}</div>
+      <section className='home__votes'>
+        <div className='row'>{HouseMates}</div>
 
-        <div className="mt-5 d-flex-column flex-justify-center text-center">
-          <button onClick={() => viewLeaderboard()} className="text-bold">View Leaderboard</button>
-          {errorState && <h4 className="mt-4 text-red">*Finish the votes</h4>}
+        <div className='mt-5 d-flex-column flex-justify-center text-center'>
+          <button onClick={() => viewLeaderboard()} className='text-bold'>
+            View Leaderboard
+          </button>
+          {errorState && <h4 className='mt-4 text-red'>*Finish the votes</h4>}
         </div>
       </section>
     </div>
