@@ -42,6 +42,7 @@ export default function Voting() {
         onVote={() => voteHM(hm)}
         downVote={() => downVote(hm)}
         castVote={(vote) => castVote(vote, hm)}
+        checkManualVoteError={(voteAmount) => checkIfVotingIsPossible(voteAmount, hm)}
       />
     </div>
   ));
@@ -131,13 +132,13 @@ export default function Voting() {
 
     let totalVotesNow = 0;
     housemates.forEach((hmates) => {
-      totalVotesNow = maximumVotes + hmates.votes;
+      totalVotesNow += Number(hmates.votes);
     });
 
-    if (maximumVotes > totalVotesNow) {
-      return false;
+    if (maximumVotes >= totalVotesNow) {
+      return true;
     }
-    return true;
+    return false;
   };
 
   const viewLeaderboard = () => {
@@ -162,7 +163,7 @@ export default function Voting() {
         <div className="row">{HouseMates}</div>
 
         <div className="mt-5 d-flex-column flex-justify-center text-center">
-          <button onClick={() => viewLeaderboard()}>View Leaderboard</button>
+          <button onClick={() => viewLeaderboard()} className="text-bold">View Leaderboard</button>
           {errorState && <h4 className="mt-4 text-red">*Finish the votes</h4>}
         </div>
       </section>

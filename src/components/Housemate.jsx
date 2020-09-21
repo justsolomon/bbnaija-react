@@ -5,12 +5,15 @@ export default function Housemate({
   onVote,
   downVote,
   castVote,
-  housemates
+  housemates,
+  checkManualVoteError
 }) {
   const [votes, setVotes] = useState(housemate.votes);
+  const [displayedVotes, setDisplayedVotes] = useState(housemate.votes);
+  const [excessVoteError, setExcessVoteError] = useState(false);
 
   useEffect(() => {
-    if (votes.length > 0) {
+    if (votes > 0) {
       const nn = parseInt(votes);
       castVote(nn);
     }
@@ -18,6 +21,7 @@ export default function Housemate({
 
   useEffect(() => {
     setVotes(housemate.votes);
+    setDisplayedVotes(housemate.votes);
   }, [housemates]);
 
   return (
@@ -38,9 +42,19 @@ export default function Housemate({
             <div className="housemate__vote__divider" />
             <input
               type="text"
-              className="housemate__vote__count"
-              onChange={(e) => setVotes(e.target.value)}
-              value={votes}
+              className="housemate__vote__count text-bold"
+              onChange={(e) => {
+                  if (checkManualVoteError(e.target.value)) {
+                    setExcessVoteError(false);
+                    setVotes(e.target.value);
+                    setDisplayedVotes(e.target.value)
+                  } else {
+                    setDisplayedVotes(e.target.value)
+                    setExcessVoteError(true);
+                  }
+                }
+              }
+              value={displayedVotes}
             />
             <div className="housemate__vote__divider" />
             <button
@@ -50,6 +64,7 @@ export default function Housemate({
               +
             </button>
           </div>
+          {excessVoteError && <p className="mt-1 text-red text-small">*Excess vote</p>}
         </div>
       </div>
     </div>
