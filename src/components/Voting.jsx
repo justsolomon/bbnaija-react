@@ -27,12 +27,14 @@ const staticHousemates = [
   }
 ];
 
+
 const maximumVotes = 10;
 
 export default function Voting() {
   const [vote, setVote] = useState(maximumVotes);
   const [housemates, updateHousemates] = useState(staticHousemates);
   const [errorState, setErrorState] = useState(false);
+
 
   const HouseMates = housemates.map((hm) => (
     <div key={hm.name} className="col-md-6">
@@ -53,13 +55,13 @@ export default function Voting() {
 
   const voteHM = (hm) => {
     setErrorState(false);
-    if (vote <= 0) {
+    if (vote <= 0) { 
       return;
     }
     const housematesCopy = [];
     hm.votes = hm.votes + 1;
 
-    setVote((vote) => vote - 1);
+    setVote((vote) => vote - 1); 
 
     housemates.forEach((hmates) => {
       if (hmates.name === hm.name) {
