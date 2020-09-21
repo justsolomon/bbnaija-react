@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Housemate from "./Housemate";
 import staticHousemates from './HousematesList';
+import { useHistory } from 'react-router-dom';
 
 const maximumVotes = 10;
 
@@ -8,6 +9,7 @@ export default function Voting() {
   const [vote, setVote] = useState(maximumVotes);
   const [housemates, updateHousemates] = useState(staticHousemates);
   const [errorState, setErrorState] = useState(false);
+  const history = useHistory();
 
   const HouseMates = housemates.map((hm) => (
     <div key={hm.name} className="col-md-6">
@@ -81,7 +83,6 @@ export default function Voting() {
       housematesCopy.push(hmates);
     });
     updateHousemates(housematesCopy);
-    console.log(housemates);
 
     setNumberOfRemainingVotes();
   };
@@ -119,7 +120,7 @@ export default function Voting() {
   const viewLeaderboard = () => {
     if (vote > 0) {
       setErrorState(true);
-    }
+    } else history.push('/leaderboard');
   };
 
   return (
