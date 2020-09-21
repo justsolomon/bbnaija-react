@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Housemate from "./Housemate";
-import staticHousemates from './HousematesList';
+import Housemate from "../components/Housemate";
+import staticHousemates from '../components/HousematesList';
 import { useHistory } from 'react-router-dom';
 
 const maximumVotes = 10;

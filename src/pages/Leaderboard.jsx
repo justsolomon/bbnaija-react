@@ -1,6 +1,6 @@
 import React from 'react';
-import HousemateRank from './HousemateRank';
-import staticHousemates from './HousematesList';
+import HousemateRank from '../components/HousemateRank';
+import staticHousemates from '../components/HousematesList';
 import { useHistory } from 'react-router-dom';
 
 export default function Leaderboard() {
