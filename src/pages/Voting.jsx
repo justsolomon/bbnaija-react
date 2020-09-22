@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Housemate from '../components/Housemate';
 import staticHousemates from '../components/HousematesList';
 import { useHistory } from 'react-router-dom';
+import HousematesContext from '../context/HousematesContext';
 
 const maximumVotes = 10;
 
@@ -9,7 +10,10 @@ export default function Voting() {
   const [vote, setVote] = useState(maximumVotes);
   const [housemates, updateHousemates] = useState(staticHousemates);
   const [errorState, setErrorState] = useState(false);
+
   const history = useHistory();
+
+  const { updateHMContext } = useContext(HousematesContext);
 
   const HouseMates = housemates.map((hm) => (
     <div key={hm.name} className='col-md-6'>
@@ -122,7 +126,11 @@ export default function Voting() {
   const viewLeaderboard = () => {
     if (vote > 0) {
       setErrorState(true);
-    } else history.push('/leaderboard');
+    } else {
+      //update value of housemates array in context
+      updateHMContext(housemates);
+      history.push('/leaderboard');
+    }
   };
 
   return (
