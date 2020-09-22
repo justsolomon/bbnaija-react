@@ -1,10 +1,11 @@
 import React from 'react';
-import HousemateRank from '../components/HousemateRank';
 import { Redirect, useHistory } from 'react-router-dom';
+import HousemateRank from '../components/HousemateRank';
 
 export default function Leaderboard() {
   const history = useHistory();
 
+  // Check if localstorage is empty
   if (localStorage.getItem('housemate') === null) {
     console.log('Empty');
   } else {
