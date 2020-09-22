@@ -1,7 +1,8 @@
+body {
+  background-image: url('./../../img/background.png');
+}
+
 .home {
-  background: url('/img/background.png');
-  // background: $yellow;
-  height: 100vh;
   padding-top: 60px;
   &__votes {
     padding: 50px 0 0;
