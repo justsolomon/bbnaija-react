@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Housemate from "./Housemate";
+import { useErrorState, usePercentageOfVoteRemaining, useVoteHM } from '../Hooks'
 
 const staticHousemates = [
   {
@@ -31,10 +32,13 @@ const staticHousemates = [
 const maximumVotes = 10;
 
 export default function Voting() {
+
+  
   const [vote, setVote] = useState(maximumVotes);
   const [housemates, updateHousemates] = useState(staticHousemates);
-  const [errorState, setErrorState] = useState(false);
+  const [errorState, setErrorState] = useErrorState(false);
 
+  
 
   const HouseMates = housemates.map((hm) => (
     <div key={hm.name} className="col-md-6">
@@ -49,10 +53,6 @@ export default function Voting() {
     </div>
   ));
 
-  const percentageOfVoteRemaining = () => {
-    const percentage = (vote / maximumVotes) * 100;
-    return Math.floor(percentage);
-  };
 
   const voteHM = (hm) => {
     setErrorState(false);
@@ -108,9 +108,9 @@ export default function Voting() {
       housematesCopy.push(hmates);
     });
     updateHousemates(housematesCopy);
-    console.log(housemates);
 
-    setNumberOfRemainingVotes();
+    setNumberOfRemainingVotes()
+    
   };
 
   const setNumberOfRemainingVotes = () => {
@@ -156,7 +156,7 @@ export default function Voting() {
         <h2 className="voting__box__numbers">{vote}</h2>
         <div className="voting__box__progressBar">
           <div
-            className={`progress length-${percentageOfVoteRemaining()}`}
+            className={`progress length-${usePercentageOfVoteRemaining(vote, maximumVotes)}`}
           ></div>
         </div>
       </section>
