@@ -12,7 +12,9 @@ export default function HousemateRank({ housemate }) {
         </div>
         <div className='col-3 d-flex justify-content-end'>
           <div className='candidate-position d-flex align-items-center justify-content-center'>
-            <p className='candidate-position__number text-bold'>1</p>
+            <p className='candidate-position__number text-bold'>
+              {housemate.votes}{' '}
+            </p>
           </div>
         </div>
       </div>

@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Housemate from '../components/Housemate';
 import staticHousemates from '../components/HousematesList';
 import { useHistory } from 'react-router-dom';
-
-const maximumVotes = 10;
+// custom hooks
+import {
+  useErrorState,
+  usePercentageOfVoteRemaining,
+  useUpdateHousemates,
+  useSetVote,
+} from '../Hooks/';
 
 export default function Voting() {
-  const [vote, setVote] = useState(maximumVotes);
-  const [housemates, updateHousemates] = useState(staticHousemates);
-  const [errorState, setErrorState] = useState(false);
+  const maximumVotes = 10;
+  const [vote, setVote] = useSetVote(maximumVotes);
+  const [housemates, updateHousemates] = useUpdateHousemates(staticHousemates);
+  const [errorState, setErrorState] = useErrorState(false);
   const history = useHistory();
 
   const HouseMates = housemates.map((hm) => (
@@ -26,11 +32,6 @@ export default function Voting() {
     </div>
   ));
 
-  const percentageOfVoteRemaining = () => {
-    const percentage = (vote / maximumVotes) * 100;
-    return Math.floor(percentage);
-  };
-
   const voteHM = (hm) => {
     setErrorState(false);
     if (vote <= 0) {
@@ -40,7 +41,6 @@ export default function Voting() {
     hm.votes = hm.votes + 1;
 
     setVote((vote) => vote - 1);
-
     housemates.forEach((hmates) => {
       if (hmates.name === hm.name) {
         hmates = hm;
@@ -122,7 +122,10 @@ export default function Voting() {
   const viewLeaderboard = () => {
     if (vote > 0) {
       setErrorState(true);
-    } else history.push('/leaderboard');
+    } else {
+      localStorage.setItem('housemate', JSON.stringify(housemates));
+      history.push('/leaderboard');
+    }
   };
 
   return (
@@ -132,7 +135,10 @@ export default function Voting() {
         <h2 className='voting__box__numbers'>{vote}</h2>
         <div className='voting__box__progressBar'>
           <div
-            className={`progress length-${percentageOfVoteRemaining()}`}
+            className={`progress length-${usePercentageOfVoteRemaining(
+              vote,
+              maximumVotes
+            )}`}
           ></div>
         </div>
       </section>
