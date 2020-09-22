@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { HousematesProvider } from './context/HousematesContext';
 
 export default function App() {
-  const [housemates, setHousemates] = useState({});
+  const [housemates, setHousemates] = useState([]);
 
   const updateHMContext = (newHMList) => setHousemates(newHMList);
 
