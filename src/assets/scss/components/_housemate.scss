@@ -1,5 +1,5 @@
 .housemate {
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid rgba(black, 0.09);
   box-sizing: border-box;
   border-radius: 7px;
@@ -17,7 +17,7 @@
   }
   &__vote {
     height: 34px;
-    background: #FFFFFF;
+    background: #ffffff;
     border: 1px solid rgba(black, 0.1);
     box-sizing: border-box;
     border-radius: 7px;
@@ -45,8 +45,8 @@
     &__count {
       flex: 1;
       display: flex;
-    width: 15px;
-    border: none;
+      width: 15px;
+      border: none;
       text-align: center;
       align-items: center;
       justify-content: center;

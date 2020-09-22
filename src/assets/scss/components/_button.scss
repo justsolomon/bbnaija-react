@@ -7,4 +7,9 @@ button,
   padding: 14px 62px;
   font-size: 18px;
   line-height: 21px;
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+  }
 }
