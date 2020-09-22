@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 export const useErrorState = (value) => {
   const [errorState, setErrorState] = useState(value);
@@ -24,13 +23,22 @@ export const useSetVote = (maximumVotes) => {
   return [vote, setVote];
 };
 
-// export const useViewLeaderboard = (maximumVotes, errorState) => {
-//   const history = useHistory();
-//   const [error, setError] = useState(errorState);
-//   const [vote, setVote] = useState(maximumVotes);
-//   if (vote > 0) {
-//     setError(errorState);
-//   } else history.push('/leaderboard');
+function getSavedValue(key, initialValue) {
+  const savedValue = JSON.parse(localStorage.getItem(key));
+  if (savedValue) return savedValue;
 
-//   return [setVote, error];
-// };
+  if (initialValue instanceof Function) return initialValue();
+  return initialValue;
+}
+
+export const useLocalStorage = (key, initialValue) => {
+  const [value, setValue] = useState(() => {
+    return getSavedValue(key, initialValue);
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }, []);
+
+  return [value, setValue];
+};

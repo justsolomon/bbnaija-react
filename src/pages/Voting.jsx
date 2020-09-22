@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Housemate from '../components/Housemate';
 import staticHousemates from '../components/HousematesList';
 import { useHistory } from 'react-router-dom';
@@ -10,9 +10,8 @@ import {
   useSetVote,
 } from '../Hooks/';
 
-const maximumVotes = 10;
-
 export default function Voting() {
+  const maximumVotes = 10;
   const [vote, setVote] = useSetVote(maximumVotes);
   const [housemates, updateHousemates] = useUpdateHousemates(staticHousemates);
   const [errorState, setErrorState] = useErrorState(false);
@@ -42,7 +41,6 @@ export default function Voting() {
     hm.votes = hm.votes + 1;
 
     setVote((vote) => vote - 1);
-
     housemates.forEach((hmates) => {
       if (hmates.name === hm.name) {
         hmates = hm;
@@ -124,7 +122,10 @@ export default function Voting() {
   const viewLeaderboard = () => {
     if (vote > 0) {
       setErrorState(true);
-    } else history.push('/leaderboard');
+    } else {
+      localStorage.setItem('housemate', JSON.stringify(housemates));
+      history.push('/leaderboard');
+    }
   };
 
   return (
