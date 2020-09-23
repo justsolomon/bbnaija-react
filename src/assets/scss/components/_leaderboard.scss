@@ -14,3 +14,21 @@
     font-size: 1.4rem;
   }
 }
+
+@media (max-width: 800px) {
+  .leaderboard {
+    width: 88%;
+  }
+}
+
+@media (max-width: 750px) {
+  .leaderboard {
+    width: 75%;
+  }
+}
+
+@media (max-width: 450px) {
+  .leaderboard {
+    width: 95%;
+  }
+}

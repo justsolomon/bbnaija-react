@@ -45,3 +45,21 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .voting {
+    width: 88%;
+  }
+}
+
+@media (max-width: 750px) {
+  .voting {
+    width: 75%;
+  }
+}
+
+@media (max-width: 450px) {
+  .voting {
+    width: 95%;
+  }
+}

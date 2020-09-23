@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import HousemateRank from '../components/HousemateRank';
 
 export default function Leaderboard() {
+  const [evictedHM, setEvictedHM] = useState({});
   const history = useHistory();
+
+  useEffect(() => {
+    setEvictedHM(getSortedHousemate[getSortedHousemate.length - 1]);
+  }, []);
 
   // Check if localstorage is empty
   if (localStorage.getItem('housemate') === null) {
@@ -21,9 +26,9 @@ export default function Leaderboard() {
       }
     );
 
-    var housemateRanks = getSortedHousemate.map((hm) => (
+    var housemateRanks = getSortedHousemate.map((hm, i) => (
       <div key={hm.name} className='col-md-6'>
-        <HousemateRank housemate={hm} />
+        <HousemateRank housemate={hm} rank={i + 1} />
       </div>
     ));
   }
@@ -41,9 +46,7 @@ export default function Leaderboard() {
           <div className='row'>{housemateRanks}</div>
 
           <div className='mt-5 text-center text-bold'>
-            <p className='eviction-notice'>
-              {getSortedHousemate[0].name} won the vote
-            </p>
+            <p className='eviction-notice'>{evictedHM.name} was evicted</p>
           </div>
 
           <div className='text-center mt-5'>
