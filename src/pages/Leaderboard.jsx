@@ -26,9 +26,9 @@ export default function Leaderboard() {
       }
     );
 
-    var housemateRanks = getSortedHousemate.map((hm) => (
+    var housemateRanks = getSortedHousemate.map((hm, i) => (
       <div key={hm.name} className='col-md-6'>
-        <HousemateRank housemate={hm} />
+        <HousemateRank housemate={hm} rank={i + 1} />
       </div>
     ));
   }

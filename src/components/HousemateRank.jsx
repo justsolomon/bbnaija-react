@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function HousemateRank({ housemate }) {
+export default function HousemateRank({ housemate, rank }) {
   return (
     <div className='housemate-ranking'>
       <div className='row'>
@@ -12,9 +12,7 @@ export default function HousemateRank({ housemate }) {
         </div>
         <div className='col-3 d-flex justify-content-end'>
           <div className='candidate-position d-flex align-items-center justify-content-center'>
-            <p className='candidate-position__number text-bold'>
-              {housemate.votes}{' '}
-            </p>
+            <p className='candidate-position__number text-bold'>{rank}</p>
           </div>
         </div>
       </div>
