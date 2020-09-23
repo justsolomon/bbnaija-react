@@ -53,3 +53,21 @@
     }
   }
 }
+
+@media (max-width: 450px) {
+  .housemate {
+    img {
+      width: 55px;
+      height: 55px;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .housemate {
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}
