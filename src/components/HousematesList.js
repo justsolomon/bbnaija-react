@@ -1,20 +1,14 @@
 const staticHousemates = [
   {
     name: 'Dorathy',
-    picture: 'https://dailypost.ng/wp-content/uploads/2020/08/Dorathy-1.jpg',
-    votes: 0,
-  },
-  {
-    name: 'Ozo',
     votes: 0,
     picture:
-      'https://scontent.fabv2-1.fna.fbcdn.net/v/t1.0-9/110161165_1150928051973512_5031557519512403774_o.jpg?_nc_cat=111&_nc_sid=dd9801&_nc_ohc=4FXuo0DJ2AEAX8avFNS&_nc_ht=scontent.fabv2-1.fna&oh=fdc7bc48961cf7042368df6738f6318d&oe=5F8A6493',
+      'https://ichef.bbci.co.uk/news/640/cpsprodpb/935A/production/_113522773_3.jpg',
   },
   {
-    name: 'Kiddwaya',
+    name: 'Neo',
     votes: 0,
-    picture:
-      'https://i1.wp.com/media.premiumtimesng.com/wp-content/files/2020/08/Screenshot-270-e1597078639510.png?fit=566%2C561&ssl=1',
+    picture: 'https://dailypost.ng/wp-content/uploads/2020/07/8cP9IhAM.jpeg',
   },
   {
     name: 'Laycon',

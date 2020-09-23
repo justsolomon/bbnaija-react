@@ -13,3 +13,10 @@ button,
     outline: 0;
   }
 }
+
+@media (max-width: 500px) {
+  button {
+    padding: 14px 0px;
+    width: 100%;
+  }
+}
