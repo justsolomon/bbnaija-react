@@ -41,7 +41,7 @@ export default function Housemate({
             </button>
             <div className='housemate__vote__divider' />
             <input
-              type='text'
+              type='tel'
               className='housemate__vote__count text-bold'
               onChange={(e) => {
                 if (checkManualVoteError(e.target.value)) {
