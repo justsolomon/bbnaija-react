@@ -51,6 +51,7 @@ export default function Leaderboard() {
               onClick={() => {
                 localStorage.clear('housemate');
                 history.push('/');
+                window.location.reload();
               }}
               className='text-bold'
             >
